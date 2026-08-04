@@ -249,8 +249,6 @@ class QubesInitialSetup(KickstartService):
                 disp_preload=self.disp_preload,
             )
         )
-        if default_template:
-            tasks.append(CreateDefaultDVMTask(default_template=default_template))
         tasks.append(
             ConfigureNetworkTask(
                 whonix_default=self.whonix_default,
@@ -258,6 +256,8 @@ class QubesInitialSetup(KickstartService):
                 start_whonix=self.whonix_vms,
             )
         )
+        if default_template:
+            tasks.append(CreateDefaultDVMTask(default_template=default_template))
         return tasks
 
     def configure_with_tasks(self):
